@@ -1,0 +1,93 @@
+Docker, SPringboot, Spring Integration and Python
+
+
+What is docker?
+
+
+
+
+
+
+
+
+Next: Setup Pubsub Emulator on Docker (Windows)
+	Requirements include python, python dependencies and docker
+	1. Install Docker Desktop - https://docs.docker.com/get-docker/
+	2. Create a docker-compose.yml file with PubSub Emulator definitions as a container
+	3. To start the container, open cmd from same location as docker-compose file and run command - docker-compose up
+	4. Install python - https://www.python.org/downloads/
+	5. Install python dependencies -  (1) google-cloud-pubsub==2.13.0 	(2) avro==1.11.0
+		create a text file with this two dependencies on separate lines and save as requirements.txt
+	6. Open cmd from same directory where txt file is saved and run the command - python -m pip install -r requirements.txt
+		note this command will vary if you installed python 3
+	7. set or export system environment variable. Run command - set PUBSUB_EMULATOR_HOST=[::1]:18681 Or open system env variables and add
+	8. Create file pubsub.py
+	9. Verify topic created by listing all topics - pubsub.py is-chibuisi-dev list-topics- 
+	10. Verify subscription created by listing all subscriptions - pubsub.py is-chibuisi-dev list-subscriptions 
+	11. Subscribe to the subscription emailsubscription. Run command - pubsub.py is-chibuisi-dev subscribe emailsubscription
+	12. Publish message on topic email. Run command - pubsub.py is-chibuisi-dev publish email
+	13. Create a second topic test - pubsub.py is-chibuisi-dev create-topic test
+	14. Create a second subscription testsub - pubsub.py is-chibuisi-dev create-subscription test testsub
+	
+more info on setting up PubSub Emulator is on this link - https://cloud.google.com/pubsub/docs/emulator
+	
+	
+	
+	
+	
+
+Next: Use spring listener to consume message from PubSub Emulator topic and subscription
+    Step A. Create a SpringBoot project
+    Step B. Add the Dependencies -
+        1. spring-boot-starter-integration
+        2. spring-cloud-gcp-starter-pubsub
+    Step C. Add the application property
+        1. spring.cloud.gcp.pubsub.emulator-host=localhost:18681
+    Step D. Configure Spring Integration for message channel and Service Activator
+    Step E. Run the springboot application
+    Step F. Publish a message using the pubsub.py we created in the first video
+    step G. Open console to see our log
+    Optional: use subscribe from pubsub.py/subscribe to subscribe to the topic before you publish
+
+
+
+
+
+Next: Send pubsub emulator message as email using java mail client
+
+
+
+
+
+
+
+
+
+Next: Publish message from spring listener in springboot to pubsub emulator
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+Publish message on PubSub Emulator topic (python file)
+Subscribe and consume messages on OubSub Emulator topic (Sporingboot and spring intregration)
+Publish messages from springboot to spring integration to pubsub emulator
