@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDateTime;
 
 @Service
 public class EmailSender {
@@ -18,11 +19,11 @@ public class EmailSender {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
         try{
-            mimeMessageHelper.setTo(paymentReport.getUser());
+            mimeMessageHelper.setTo(paymentReport.getEmail());
             mimeMessageHelper.setSubject("Your payment has been received and processed successfully");
-            mimeMessageHelper.setText("Payment for account: " + paymentReport.getUser()
-                    + "\nAmount " + paymentReport.getAmount()
-                    + "has been processed successfully on " + paymentReport.getDateTime()
+            mimeMessageHelper.setText("Payment for account: " + paymentReport.getEmail()
+                    + "\nAmount " + paymentReport.getCurrentPrice()
+                    + "has been processed successfully on " + LocalDateTime.now()
                     + "\n\nThank you for your continued support \n\n");
         }
         catch (MessagingException messagingException){
