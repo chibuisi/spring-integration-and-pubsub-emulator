@@ -29,8 +29,10 @@ public class ApplicationLifecycleEventListener {
         } catch(JsonProcessingException e){
             LOGGER.log(Level.SEVERE, "Error occurred: ", e);
         }
-        if(payload != null)
+        if(payload != null) {
             emailSender.sendEmail(paymentReport);
+            LOGGER.info("Email was sent");
+        }
         else
             LOGGER.log(Level.WARNING, "Email was not sent");
     }

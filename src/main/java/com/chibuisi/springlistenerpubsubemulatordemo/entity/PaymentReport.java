@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 @ToString
 public class PaymentReport {
     private Long id;
-    private String user;
-    private BigDecimal amount;
-    private LocalDateTime dateTime;
-    private String status;
+    private String email;
+    private String currentPrice;
 }
