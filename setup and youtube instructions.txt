@@ -53,7 +53,20 @@ Next: Use spring listener to consume message from PubSub Emulator topic and subs
 
 
 
+
+
 Next: Send pubsub emulator message as email using java mail client
+    Step A: Add the dependency
+        1. spring-boot-starter-mail
+        2. spring-boot-starter-web
+    Step B: Add the application properties for java mail configuration
+    Step C: Create ApplicationConfig and add a bean for ObjectMapper
+    Step D: Create an EmailSender and Autowire JavaMailSender
+    Step E: Create a java type and use objectMapper to convert it to your type (PaymentReport)
+    Step F: Autowire EmailSender in service activator and call sendEmail(object)
+    Step G: Run application
+    Step H: use our pubsub.py created earlier to publish message
+    Step I: verify message was received in email id provided
 
 
 

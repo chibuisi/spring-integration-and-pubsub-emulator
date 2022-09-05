@@ -1,17 +1,38 @@
 package com.chibuisi.springlistenerpubsubemulatordemo;
 
+import com.chibuisi.springlistenerpubsubemulatordemo.entity.PaymentReport;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Service;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
 public class ApplicationLifecycleEventListener {
     private final Logger LOGGER = Logger.getLogger(ApplicationLifecycleEventListener.class.getSimpleName());
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    private EmailSender emailSender;
+
     @ServiceActivator(inputChannel = "inputMessageChannel")
     public void messageReceiver(String payload) {
         LOGGER.info("Message arrived! Payload: " + payload);
+        PaymentReport paymentReport = null;
+        try{
+            paymentReport = objectMapper.readValue(payload, PaymentReport.class);
+        } catch(JsonProcessingException e){
+            LOGGER.log(Level.SEVERE, "Error occurred: ", e);
+        }
+        if(payload != null)
+            emailSender.sendEmail(paymentReport);
+        else
+            LOGGER.log(Level.WARNING, "Email was not sent");
     }
 
 
