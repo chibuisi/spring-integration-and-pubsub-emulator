@@ -1,0 +1,10 @@
+version: "3"
+services:
+  pubsub:
+    container_name: spring-listener-pubsub-emulator
+    image: messagebird/gcloud-pubsub-emulator
+    ports:
+    - 18681:8681
+    environment:
+      PUBSUB_PROJECT1: "is-chibuisi-dev,email:emailsubscription"
+      PUBSUB_EMULATOR_HOST: "localhost:8681"
