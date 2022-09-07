@@ -36,18 +36,36 @@ more info on setting up PubSub Emulator is on this link - https://cloud.google.c
 	
 	
 
-Next: Use spring listener to consume message from PubSub Emulator topic and subscription
-    Step A. Create a SpringBoot project
-    Step B. Add the Dependencies -
+Next: Use spring integration to consume messages from PubSub Emulator topic and subscription
+    Step A. Create a SpringBoot project. goto https://start.spring.io/ or create from intellij
+    Step B. Add the Dependencies and dependency management-
         1. spring-boot-starter-integration
         2. spring-cloud-gcp-starter-pubsub
+        3. spring-boot-starter-web
+        4. spring-cloud-gcp-dependencies (dependency management)
     Step C. Add the application property
         1. spring.cloud.gcp.pubsub.emulator-host=localhost:18681
     Step D. Configure Spring Integration for message channel and Service Activator
-    Step E. Run the springboot application
-    Step F. Publish a message using the pubsub.py we created in the first video
-    step G. Open console to see our log
+    Step E: Create the pubsub emulator container and make sure it is running. run command "docker-compose up" if not running
+    Step F. Run the springboot application
+    Step G. Publish a message using the pubsub.py we created in the first video
+    step H. Open console to see our log
     Optional: use subscribe from pubsub.py/subscribe to subscribe to the topic before you publish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
